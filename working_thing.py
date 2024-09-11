@@ -13,9 +13,10 @@ dcm2niix '$INPUT_PATH' --OutDirMode=1 --OutDir='$OUTPUT_PATH'> log_file.txt
 RAW_FILES = $(find '$OUTPUT_PATH' -type f \(-name '*.nii' -o '*.nii.gz'\))
 
 #specify and create the directory to output recons too
+RECON_PATH = '/path_to_your_recon_directory'
 
 #run parallel processing of nii recons
-parallel --jobs 4 'recon-all -i {} -sd {} -all ::: $RAW_FILES $
+parallel --jobs 4 'recon-all -i {} -sd $RECON_PATH -all ::: $RAW_FILES
 
 
 
