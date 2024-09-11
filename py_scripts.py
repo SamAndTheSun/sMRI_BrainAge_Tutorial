@@ -1,10 +1,11 @@
 import glob
 import dcmread
+import pandas as pd
 
-def get_metadata(raw_dir, folder_pattern = '/*/.dcm'):
+def get_metadata(input_dir, out_dir, folder_pattern = '/*/.dcm'):
 
     #get all folders containing dcm files
-    folders = glob.glob(raw_dir + folder_pattern)
+    folders = glob.glob(input_dir + folder_pattern)
 
     metadata = []
 
@@ -21,7 +22,11 @@ def get_metadata(raw_dir, folder_pattern = '/*/.dcm'):
         #add the metadata for the file
         metadata.append(file_metadata)
 
-    return metadata, folders #useful in determining sort order for later analysis
+    metadata_df = pd.DataFrame(metadata)
+    metadata_df['File Path'] = folders
+    metadata.to_excel(out_dir + 'metadata.xlsx')
+    
+    return
     
 
 
