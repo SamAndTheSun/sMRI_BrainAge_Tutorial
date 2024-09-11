@@ -11,12 +11,11 @@ Steps for analyzing mri data:
 "
 
 #set paths
-INPUT_PATH = '/path_to_your_dicom_directory' #should be a folder of folders containing .dcm files
-OUTPUT_PATH = '/path_to_your_output_directory' #should be an empty folder
+INPUT_PATH = '/path_to_your_dicom_directory/' #should be a folder of folders containing .dcm files
+OUTPUT_PATH = '/path_to_your_output_directory/' #should be an empty folder
 
 #use python to get metadata from raw dicoms, and save this to "metadata.xlsx"
-echo "from pyscripts import get_metadata; metadata, folder_order = get_metadata('$INPUT_PATH', '$OUTPUT_PATH')" | python3
-
+echo "from pyscripts import get_metadata; get_metadata('$INPUT_PATH', '$OUTPUT_PATH')" | python3
 
 #convert dicom files to nii or nii.gz format
 dcm2niix '$INPUT_PATH' --OutDirMode=1 --OutDir='$OUTPUT_PATH' > log_file.txt
@@ -25,7 +24,7 @@ dcm2niix '$INPUT_PATH' --OutDirMode=1 --OutDir='$OUTPUT_PATH' > log_file.txt
 RAW_FILES = $(find '$OUTPUT_PATH' -type f \(-name '*.nii' -o '*.nii.gz'\))
 
 #specify and create the directory to output recons too
-RECON_DIR = '/path_to_your_recon_directory'
+RECON_PATH = OUTPUT_PATH + 'path_to_your_recon_directory'
 mkdir -p "$RECON_DIR"
 
 #run parallel processing of nii recons
@@ -33,7 +32,7 @@ parallel --jobs 4 'recon-all -i {} -sd '"$RECON_PATH"' -all' ::: $RAW_FILES
 
 #identify all brain.mgz files, and convert these to a single NumPy array using NiBabel
 #MIGHT NEED TO DOWNSAMPLE FIRST, BUT TRY WITHOUT FIRST
-#PYTHON SCIPT HERE
+echo "from pyscripts import mgz_to_np; mgz_to_np('$OUTPUT_PATH', '$OUTPUT_PATH')" | python3
 
 #split the data, then train, validate, and test using a neural network to predict xyz
 #PYTHON SCRIPT HERE
