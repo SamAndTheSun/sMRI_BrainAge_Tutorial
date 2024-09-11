@@ -17,7 +17,7 @@ OUTPUT_PATH = '/path_to_your_output_directory'
 #get metadata from dicom files
 
 #convert dicom files to nii or nii.gz format
-dcm2niix '$INPUT_PATH' --OutDirMode=1 --OutDir='$OUTPUT_PATH'> log_file.txt
+dcm2niix '$INPUT_PATH' --OutDirMode=1 --OutDir='$OUTPUT_PATH' > log_file.txt
 
 #select all of the files you want to run conversion on
 RAW_FILES = $(find '$OUTPUT_PATH' -type f \(-name '*.nii' -o '*.nii.gz'\))
