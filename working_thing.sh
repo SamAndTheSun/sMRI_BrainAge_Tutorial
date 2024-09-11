@@ -15,8 +15,7 @@ INPUT_PATH = '/path_to_your_dicom_directory' #should be a folder of folders cont
 OUTPUT_PATH = '/path_to_your_output_directory' #should be an empty folder
 
 #get metadata from dicom files using python
-echo "
-from pyscripts import get_metadata; get_metadata('$INPUT_PATH')" | python3
+echo "from pyscripts import get_metadata; metadata, folder_order = get_metadata('$INPUT_PATH')" | python3
 
 
 
