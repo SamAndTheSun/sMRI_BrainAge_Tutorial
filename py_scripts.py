@@ -1,7 +1,7 @@
 import glob
 import dcmread
 
-def get_metadata(raw_dir, folder_pattern):
+def get_metadata(raw_dir, folder_pattern = '/*/.dcm'):
 
     #get all folders containing dcm files
     folders = glob.glob(raw_dir + folder_pattern)
