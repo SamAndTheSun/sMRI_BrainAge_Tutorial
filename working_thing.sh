@@ -15,6 +15,7 @@ INPUT_PATH = '/path_to_your_dicom_directory'
 OUTPUT_PATH = '/path_to_your_output_directory'
 
 #get metadata from dicom files
+#PYTHON SCIPT HERE
 
 #convert dicom files to nii or nii.gz format
 dcm2niix '$INPUT_PATH' --OutDirMode=1 --OutDir='$OUTPUT_PATH' > log_file.txt
@@ -29,4 +30,18 @@ mkdir -p "$RECON_DIR"
 #run parallel processing of nii recons
 parallel --jobs 4 'recon-all -i {} -sd '"$RECON_PATH"' -all' ::: $RAW_FILES
 
-#identify all brain.mgz files, and convert these to a single NumPy array
+#identify all brain.mgz files, and convert these to a single NumPy array using NiBabel
+#MIGHT NEED TO DOWNSAMPLE FIRST, BUT TRY WITHOUT FIRST
+#PYTHON SCIPT HERE
+
+#split the data, then train, validate, and test using a neural network to predict xyz
+#PYTHON SCRIPT HERE
+
+#generate a saliency map for the neural network, identifying which parts of the brain most strongly contributed to analysis
+#PYTHON SCRIPT HERE
+
+#compress the 4-dimensional saliency map into a 3-dimensional map by averaging across all subjcts
+#PYTHON SCRIPT HERE
+
+#visualize this three dimension map
+#MATLAB SCRIPT HERE, SHOULD BE EASIER THAN COMPRESSING TO 2D
