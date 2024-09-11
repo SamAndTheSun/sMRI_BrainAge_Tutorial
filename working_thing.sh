@@ -11,10 +11,11 @@ Steps for analyzing mri data:
 '
 
 #set paths
-INPUT_PATH = '/path_to_your_dicom_directory'
-OUTPUT_PATH = '/path_to_your_output_directory'
+INPUT_PATH = '/path_to_your_dicom_directory' #should be a folder of folders containing .dcm files
+OUTPUT_PATH = '/path_to_your_output_directory' #should be an empty folder
 
 #get metadata from dicom files
+find -name ''
 #PYTHON SCIPT HERE
 
 #convert dicom files to nii or nii.gz format
