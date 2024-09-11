@@ -1,4 +1,4 @@
-: '
+: "
 Steps for analyzing mri data:
 
   Get metadata from dicom files
@@ -8,14 +8,24 @@ Steps for analyzing mri data:
   Format and apply neural network to NPY file 
   Generate 4d saliency map showing neural network weighting across subjects
   Compress this into 2d maps for further analysis
-'
+"
 
 #set paths
 INPUT_PATH = '/path_to_your_dicom_directory' #should be a folder of folders containing .dcm files
 OUTPUT_PATH = '/path_to_your_output_directory' #should be an empty folder
 
-#get metadata from dicom files
-#PYTHON SCIPT HERE
+#get metadata from dicom files using python
+echo "
+import glob
+
+folders = glob.glob(raw_dir + folder_pattern)
+for folder in folders:
+    dcm_files = glob.glob(folder + '*.dcm')
+    #metadata should be identical for all dicoms in the same subject/timepoint folder
+    ds = dcmread(dcm_files[0])
+" | python3
+
+
 
 #convert dicom files to nii or nii.gz format
 dcm2niix '$INPUT_PATH' --OutDirMode=1 --OutDir='$OUTPUT_PATH' > log_file.txt
