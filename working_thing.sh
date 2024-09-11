@@ -16,14 +16,7 @@ OUTPUT_PATH = '/path_to_your_output_directory' #should be an empty folder
 
 #get metadata from dicom files using python
 echo "
-import glob
-
-folders = glob.glob(raw_dir + folder_pattern)
-for folder in folders:
-    dcm_files = glob.glob(folder + '*.dcm')
-    #metadata should be identical for all dicoms in the same subject/timepoint folder
-    ds = dcmread(dcm_files[0])
-" | python3
+from pyscripts import get_metadata; get_metadata('$INPUT_PATH')" | python3
 
 
 
