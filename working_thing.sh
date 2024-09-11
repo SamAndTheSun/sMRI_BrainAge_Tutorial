@@ -14,7 +14,7 @@ Steps for analyzing mri data:
 INPUT_PATH = '/path_to_your_dicom_directory' #should be a folder of folders containing .dcm files
 OUTPUT_PATH = '/path_to_your_output_directory' #should be an empty folder
 
-#get metadata from dicom files using python
+#use python to get metadata from raw dicoms, and save this to "metadata.xlsx"
 echo "from pyscripts import get_metadata; metadata, folder_order = get_metadata('$INPUT_PATH')" | python3
 
 
