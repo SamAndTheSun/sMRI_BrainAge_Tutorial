@@ -33,6 +33,10 @@ def get_metadata(input_dir, out_dir, folder_pattern = '/*/.dcm'):
     return
 
 def mgz_to_np(file_paths):
+    '''
+    converts several mgz files into a single NumPy array, fit for NN analysis
+    depending on the NN, you may need to downsample the mgz files accordingly
+    '''
 
     array = []
 
