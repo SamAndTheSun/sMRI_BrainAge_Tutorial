@@ -21,7 +21,7 @@ def get_metadata(raw_dir, folder_pattern = '/*/.dcm'):
         #add the metadata for the file
         metadata.append(file_metadata)
 
-    return folders #useful in determining sort order for later analysis
+    return metadata, folders #useful in determining sort order for later analysis
     
 
 
