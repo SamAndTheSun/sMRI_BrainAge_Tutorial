@@ -12,8 +12,12 @@ dcm2niix '$INPUT_PATH' --OutDirMode=1 --OutDir='$OUTPUT_PATH'> log_file.txt
 #select all of the files you want to run conversion on
 RAW_FILES = $(find '$OUTPUT_PATH' -type f \(-name '*.nii' -o '*.nii.gz'\))
 
+#specify and create the directory to output recons too
+
 #run parallel processing of nii recons
-parallel --jobs 4 'recon-all -i {} -all ::: $RAW_FILES
+parallel --jobs 4 'recon-all -i {} -sd {} -all ::: $RAW_FILES $
+
+
 
 
 #next, add a subjects directory for freesurfer
