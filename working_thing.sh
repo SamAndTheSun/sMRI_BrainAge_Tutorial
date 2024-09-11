@@ -15,7 +15,7 @@ INPUT_PATH = '/path_to_your_dicom_directory' #should be a folder of folders cont
 OUTPUT_PATH = '/path_to_your_output_directory' #should be an empty folder
 
 #get metadata from dicom files
-find -name ''
+find INPUT_PATH/ -name '.dcm' | 
 #PYTHON SCIPT HERE
 
 #convert dicom files to nii or nii.gz format
