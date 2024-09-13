@@ -1,4 +1,8 @@
 : "
+Data:
+
+  Use https://openfmri.org/dataset/ds000002/ , it is a classification dataset. Train a CNN to learn off of this data for classification using categorical cross entropy, plot an AUC representing the accuracy
+
 Steps for analyzing mri data:
 
   Get metadata from dicom files
