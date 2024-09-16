@@ -73,6 +73,8 @@ def process_saliency_mapy():
     #it is a "brain segmentation map", so in order to interpret the saliency map you want to start with this
     #then from that you can get information about overlap
 
+    #maybe, dont zoom, train the nn, use native.mgz for visualization?
+
     #this wouldn't be useful for vizualition, but if I combine that with 3d rendering it should be easier than trying to figre out the matlab code fully 
     
 
