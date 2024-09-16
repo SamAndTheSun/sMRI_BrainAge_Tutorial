@@ -68,3 +68,14 @@ def build_CNN(x_dim=128, y_dim=128, z_dim=128, n_channels=1):
     model = keras.Model(inputs, outputs) #create the model class
     return model
 
+def process_saliency_mapy():
+    #first, you want to get the atlas data for the individual subject. This is available in the a2009+aseg.mgz file
+    #it is a "brain segmentation map", so in order to interpret the saliency map you want to start with this
+
+    #next, try using "zoom" or something similar so it in the same dimensions as the saliency map
+
+    #maybe you could also just use the fact that you know its subjects, x, y, z, with x y and z being 256. You average across subject axis. Then, you use 
+
+    
+    
+
