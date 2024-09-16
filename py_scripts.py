@@ -56,5 +56,15 @@ def mgz_to_np(metadata_dir, out_dir):
     
     return
     
+def build_CNN(x_dim=128, y_dim=128, z_dim=128, n_channels=1):
 
+    raw_input = tf.keras.Input((x_dim, y_dim, z_dim, n_channels))
+    x = tf.keras.layers.Conv3D(filters=, kernel_size_=, activation='relu')(raw_input)
+
+    etc.
+
+    outputs = tf.keras.layers.Dense(units=1, activation='relu')(x)
+    
+    model = keras.Model(inputs, outputs) #create the model class
+    return model
 
