@@ -46,6 +46,9 @@ def mgz_to_np(metadata_dir, out_dir):
     for path in file_paths:
         img = nib.load(path)
         data = img.get_fdata() #convert data to numPy array
+
+        #from scipy.ndimage import zom; zoom(input, (0.5, 0.5, 0.5)
+        
         array.append(data)
 
     np_array = np.stack(array, axis=0)
