@@ -74,6 +74,36 @@ def build_CNN(x_dim=128, y_dim=128, z_dim=128, n_channels=1):
 
 def process_saliency_mapy():
 
+import nibabel as nib
+import matplotlib.pyplot as plt
+
+    # Load the FreeSurfer parcellation file
+    aparc_img = nib.load('aparc.a2009s+aseg.mgz')
+    aparc_data = aparc_img.get_fdata()
+
+    # Define the label for the region of interest (e.g., hippocampus)
+    region_label = 17  # Example label for the left hippocampus
+    
+    # Create a mask for the region of interest
+    region_mask = (aparc_data == region_label)
+
+    # Load the saliency map
+    saliency_img = nib.load('saliency_map.mgz')
+    saliency_data = saliency_img.get_fdata()
+    
+    # Apply the mask to the saliency map
+    region_saliency = saliency_data[region_mask]
+    
+    # Compute statistics for the region (optional)
+    mean_saliency = region_saliency.mean()
+    print(f'Mean Saliency for Region {region_label}: {mean_saliency}')
+
+    # Optionally, display a 2D slice of the saliency data
+    slice_index = saliency_data.shape[2] // 2
+    plt.imshow(saliency_data[:, :, slice_index], cmap='jet')
+    plt.colorbar()
+    plt.title(f'Saliency Map Slice for Region {region_label}')
+    plt.show()
 
     
     #first, you want to get the atlas data for the individual subject. This is available in the a2009+aseg.mgz file
