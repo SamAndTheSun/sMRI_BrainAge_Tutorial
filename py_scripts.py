@@ -48,6 +48,7 @@ def mgz_to_np(metadata_dir, out_dir):
         data = img.get_fdata() #convert data to numPy array
 
         #from scipy.ndimage import zom; zoom(input, (0.5, 0.5, 0.5)
+        #you want to do this because 256 is easier processing wise for a NN
         
         array.append(data)
 
@@ -69,6 +70,9 @@ def build_CNN(x_dim=128, y_dim=128, z_dim=128, n_channels=1):
     return model
 
 def process_saliency_mapy():
+
+
+    
     #first, you want to get the atlas data for the individual subject. This is available in the a2009+aseg.mgz file
     #it is a "brain segmentation map", so in order to interpret the saliency map you want to start with this
     #then from that you can get information about overlap
