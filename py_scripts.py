@@ -53,6 +53,9 @@ def mgz_to_np(metadata_dir, out_dir):
         array.append(data)
 
     np_array = np.stack(array, axis=0)
+
+    #maybe normalize data here?
+    
     np.save(out_dir + 'metadata.xlsx', np_array)
     
     return
