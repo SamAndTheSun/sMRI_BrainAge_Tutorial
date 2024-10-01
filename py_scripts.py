@@ -76,7 +76,7 @@ def build_CNN(x_dim=128, y_dim=128, z_dim=128, n_channels=1):
     x = tf.keras.layers.Dense(units=128, activation="relu")(x)
     x = tf.keras.layers.Dropout(0.5)(x)
  
-    outputs = tf.keras.layers.Dense(units=1, activation="relu")(x)
+    outputs = tf.keras.layers.Dense(units=1, activation=None)(x)
  
     model = keras.Model(inputs, outputs)
     return model
