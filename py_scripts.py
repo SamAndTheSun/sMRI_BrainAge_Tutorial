@@ -61,9 +61,26 @@ def mgz_to_np(metadata_dir, out_dir):
     return
     
 def build_CNN(x_dim=128, y_dim=128, z_dim=128, n_channels=1):
+ 
+    inputs = tf.keras.Input((x_dim, y_dim, z_dim, n_channels))
+ 
+    x = tf.keras.layers.Conv3D(filters=16, kernel_size=4, activation="relu")(inputs)
+    x = tf.keras.layers.MaxPool3D(pool_size=(2, 2, 2))(x)
+    x = tf.keras.layers.BatchNormalization()(x)
+ 
+    x = tf.keras.layers.Conv3D(filters=32, kernel_size=6, activation="relu")(x)
+    x = tf.keras.layers.MaxPool3D(pool_size=(2, 2, 2))(x)
+    x = tf.keras.layers.BatchNormalization()(x)
 
-    model = tf.Sequential()
-
+    x = tf.keras.layers.GlobalAveragePooling3D()(x)
+    x = tf.keras.layers.Dense(units=128, activation="relu")(x)
+    x = tf.keras.layers.Dropout(0.5)(x)
+ 
+    outputs = tf.keras.layers.Dense(units=1, activation="relu")(x)
+ 
+    # Define the model.
+    model = keras.Model(inputs, outputs, name="BA_3DCNN_conv4k6d2")
+    return model
    
     return model
 
