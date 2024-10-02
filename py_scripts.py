@@ -65,20 +65,24 @@ def build_CNN(x_dim=128, y_dim=128, z_dim=128, n_channels=1):
     inputs = tf.keras.Input((x_dim, y_dim, z_dim, n_channels))
  
     x = tf.keras.layers.Conv3D(filters=16, kernel_size=8, activation='relu')(inputs)
-    x = tf.keras.layers.MaxPool3D(pool_size=(2, 2, 2))(x)
     x = tf.keras.layers.BatchNormalization()(x)
  
-    x = tf.keras.layers.Conv3D(filters=32, kernel_size=6, activation='relu')(x)
-    x = tf.keras.layers.MaxPool3D(pool_size=(2, 2, 2))(x)
+    x = tf.keras.layers.Conv3D(filters=32, kernel_size=16, activation='relu')(x)
+    x = tf.keras.layers.MaxPool3D(pool_size=2))(x)
     x = tf.keras.layers.BatchNormalization()(x)
 
+    x = tf.keras.layers.Conv3D(filters=64, kernel_size=32, activation='relu')(x)
+    x = tf.keras.layers.MaxPool3D(pool_size=2))(x)
+    x = tf.keras.layers.BatchNormalization()(x)
+    x = tf.keras.layers.Dropout(0.3)(x)
+
     x = tf.keras.layers.GlobalAveragePooling3D()(x)
-    x = tf.keras.layers.Dense(units=64, kernel_size=4, activation='relu')(x)
+    x = tf.keras.layers.Dense(units=128, activation='relu')(x)
     x = tf.keras.layers.Dropout(0.5)(x)
  
     outputs = tf.keras.layers.Dense(units=1)(x)
- 
     model = keras.Model(inputs, outputs)
+    
     return model
 
     #this wouldn't be useful for vizualition, but if I combine that with 3d rendering it should be easier than trying to figre out the matlab code fully 
