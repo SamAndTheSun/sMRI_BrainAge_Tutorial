@@ -1,3 +1,5 @@
+IN PROGRESS
+
 This tutorial details how to go from raw DICOM files representing MRI data to creating your own models for predicting an individual's age based on structural data.  It uses sample DICOM files and explains every step clearly using a Google Colab. The analysis model used is a Graph Convolutional Network, constructed in NumPy. It is still in the process of being built.
 
 
